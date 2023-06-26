@@ -5,9 +5,8 @@
     background-color: #ffffff;
     border-radius: 6px;
     color: #000000;
-    padding: 8px;
+    padding: 8px 16px;
     border: solid 1px #000000;
-
 }
 
 .product-info {
@@ -23,4 +22,9 @@
 
 .description {
     font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    gap: 16px;
 }

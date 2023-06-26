@@ -5,6 +5,7 @@ import { DeleteProductModal } from "./DeleteProductModal";
 import { Button } from "./Button";
 
 import styles from '../styles/Product.module.css';
+import {EditProductModal} from "./EditProductModal";
 
 export const Product = ({ product, className }) => {
 	const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);
@@ -26,7 +27,7 @@ export const Product = ({ product, className }) => {
 			</div>
 			<div className={styles.buttons}>
 				<Button
-					rootClassName={styles.delete}
+					rootClassName={styles.edit}
 					variant="secondary"
 					onClick={handleEdit}
 				>
@@ -41,6 +42,8 @@ export const Product = ({ product, className }) => {
 					Delete
 				</Button>
 			</div>
+
+			{ isEditModalOpened && <EditProductModal product={product} setIsEditModalOpened={setIsEditModalOpened} /> }
 			{ isDeleteModalOpened && <DeleteProductModal product={product} setIsModalOpened={setIsDeleteModalOpened}/> }
 		</div>
 	);

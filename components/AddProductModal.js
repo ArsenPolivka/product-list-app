@@ -7,6 +7,8 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 
 import styles from '../styles/AddProductModal.module.css'
+import {Image} from "./Image";
+import {ExitButton} from "./ExitButton";
 
 export const AddProductModal = ({ className, isModalOpened, setIsModalOpened }) => {
 	const dispatch = useDispatch();
@@ -23,10 +25,6 @@ export const AddProductModal = ({ className, isModalOpened, setIsModalOpened }) 
 		setDescription('');
 	};
 
-	const closeModal = () => {
-		setIsModalOpened(false);
-	}
-
 	return (
 		<div className={styles.wrapper}>
 			<form
@@ -35,11 +33,7 @@ export const AddProductModal = ({ className, isModalOpened, setIsModalOpened }) 
 			>
 				<h2 className={styles.heading}>Add product</h2>
 
-				<div className={styles.image}>
-					<button className={styles.uploadImageButton}>
-						Upload image
-					</button>
-				</div>
+				<Image />
 
 				<div className={styles['input-wrapper']}>
 					<Input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" required />
@@ -57,15 +51,8 @@ export const AddProductModal = ({ className, isModalOpened, setIsModalOpened }) 
 					Add
 				</Button>
 			</form>
-			<div className={styles['close-wrapper']}>
-				<button
-					className={styles.close}
-					onClick={closeModal}
-				>
-					<div className={styles.line}></div>
-					<div className={styles.line}></div>
-				</button>
-			</div>
+
+			<ExitButton setIsModalOpened={setIsModalOpened}/>
 		</div>
 	);
 };
