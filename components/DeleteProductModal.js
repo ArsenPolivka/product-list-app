@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import { deleteProduct } from '../api/products';
 import { Button } from "./Button";
@@ -6,13 +6,18 @@ import { Button } from "./Button";
 import styles from '../styles/DeleteProductModal.module.css';
 
 export const DeleteProductModal = ({ product, setIsModalOpened }) => {
-	const handleDelete = () => {
-		deleteProduct(product.id);
-	};
-
 	const closeModal = () => {
 		setIsModalOpened(false);
 	}
+
+	const handleDelete = async () => {
+		await deleteProduct(product.id);
+		closeModal();
+	};
+
+	useEffect(() => {
+		handleDelete();
+	}, [])
 
 	return (
 		<div className={styles.modalWrapper}>

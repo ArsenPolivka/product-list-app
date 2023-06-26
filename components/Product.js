@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import classNames from "classnames";
 
+import { EditProductModal } from "./EditProductModal";
 import { DeleteProductModal } from "./DeleteProductModal";
 import { Button } from "./Button";
 
 import styles from '../styles/Product.module.css';
-import {EditProductModal} from "./EditProductModal";
 
 export const Product = ({ product, className }) => {
 	const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);

@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { updateProduct } from '../store/productsSlice';
+import { Input } from "./Input";
+import { Button } from "./Button";
+import { Image } from "./Image";
+import { ExitButton } from "./ExitButton";
+import { editProduct } from "../api/products";
 
 import styles from '../styles/EditProductModal.module.css';
-import {Input} from "./Input";
-import {Button} from "./Button";
-import {Image} from "./Image";
-import {ExitButton} from "./ExitButton";
 
 export const EditProductModal = ({ product, setIsEditModalOpened }) => {
-	const dispatch = useDispatch();
 	const [name, setName] = useState(product.name);
 	const [description, setDescription] = useState(product.description);
 	const [count, setCount] = useState(product.count);
 	const [size, setSize] = useState(product.size);
 	const [weight, setWeight] = useState(product.weight);
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		dispatch(updateProduct({ id: product.id, name, description }));
+	const handleSubmit = async () => {
+		await editProduct({ name, count, size, weight, description }, product.id);
+
+		setIsEditModalOpened(false);
+
+		setName('');
+		setDescription('');
+		setCount('');
+		setSize('');
+		setWeight('');
 	};
 
 	return (

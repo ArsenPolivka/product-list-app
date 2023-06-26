@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import { Product } from './Product';
+import { getAllProducts } from "../api/products";
 
 import styles from '../styles/ProductList.module.css';
-import { getAllProducts } from "../api/products";
 
 const ProductsList = () => {
 	const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ const ProductsList = () => {
 	}, []);
 
 	if (!products.length) {
-		return <p>Loading...</p>;
+		return <p className={styles.noProducts}>There are no products in your list...</p>;
 	}
 
 	return (

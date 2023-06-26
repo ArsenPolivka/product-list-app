@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import classNames from "classnames";
 
-import { addProduct } from '../store/productsSlice';
+import { addProduct } from '../api/products';
 import { Input } from "./Input";
 import { Button } from "./Button";
+import { Image } from "./Image";
+import { ExitButton } from "./ExitButton";
 
 import styles from '../styles/AddProductModal.module.css'
-import {Image} from "./Image";
-import {ExitButton} from "./ExitButton";
 
 export const AddProductModal = ({ className, isModalOpened, setIsModalOpened }) => {
-	const dispatch = useDispatch();
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [count, setCount] = useState('');
 	const [size, setSize] = useState('');
 	const [weight, setWeight] = useState('');
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		dispatch(addProduct({ name, description }));
+	const handleSubmit = () => {
+		addProduct({ name, count, size, weight, description }).then(response => {
+			console.log(response);
+		});
+
+		setIsModalOpened(false);
+
 		setName('');
 		setDescription('');
+		setCount('');
+		setSize('');
+		setWeight('');
 	};
 
 	return (
