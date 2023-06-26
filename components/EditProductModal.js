@@ -9,14 +9,14 @@ import { editProduct } from "../api/products";
 import styles from '../styles/EditProductModal.module.css';
 
 export const EditProductModal = ({ product, setIsEditModalOpened }) => {
-	const [name, setName] = useState(product.name);
-	const [description, setDescription] = useState(product.description);
-	const [count, setCount] = useState(product.count);
-	const [size, setSize] = useState(product.size);
-	const [weight, setWeight] = useState(product.weight);
+	const [name, setName] = useState(product?.name);
+	const [description, setDescription] = useState(product?.description);
+	const [count, setCount] = useState(product?.count);
+	const [size, setSize] = useState(product?.size);
+	const [weight, setWeight] = useState(product?.weight);
 
 	const handleSubmit = async () => {
-		await editProduct({ name, count, size, weight, description }, product.id);
+		await editProduct({ name, count, size, weight, description }, product?.id);
 
 		setIsEditModalOpened(false);
 

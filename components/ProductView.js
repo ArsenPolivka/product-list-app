@@ -7,10 +7,10 @@ const ProductView = ({ productId }) => {
 
 	return (
 		<div>
-			<h2>{product.name}</h2>
-			<p>{product.description}</p>
-			{product.comments.map(comment => (
-				<Comment key={comment.id} comment={comment} />
+			<h2>{product?.name}</h2>
+			<p>{product?.description}</p>
+			{product?.comments.map(comment => (
+				<Comment key={comment?.id} comment={comment} />
 			))}
 		</div>
 	);

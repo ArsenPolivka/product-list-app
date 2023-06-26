@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import ProductView from '../components/ProductView';
-import EditProductModal from '../components/EditProductModal';
+import { EditProductModal } from '../components/EditProductModal';
 
 const ProductPage = () => {
 	const router = useRouter();
