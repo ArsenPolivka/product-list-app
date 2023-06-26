@@ -14,7 +14,10 @@ export const Input = ({
 	 required,
 	 rootClassName,
 	 inputRootClassName,
-	 error
+	 error,
+	 textarea,
+	 rows,
+	 cols
 }) => {
 	return (
 		<label className={classNames(
@@ -29,17 +32,30 @@ export const Input = ({
       >
         {label}
       </span>
-
-			<input
-				className={classNames(styles.input, inputRootClassName, error && styles.error)}
-				required={required}
-				disabled={disabled}
-				type={type}
-				value={value}
-				name={name}
-				placeholder={placeholder}
-				onChange={onChange}
-			/>
+			{textarea ? (
+				<textarea
+					className={classNames(styles.input, inputRootClassName, error && styles.error)}
+					required={required}
+					disabled={disabled}
+					value={value}
+					name={name}
+					placeholder={placeholder}
+					onChange={onChange}
+					rows={rows}
+					cols={cols}
+				></textarea>
+			) : (
+				<input
+					className={classNames(styles.input, inputRootClassName, error && styles.error)}
+					required={required}
+					disabled={disabled}
+					type={type}
+					value={value}
+					name={name}
+					placeholder={placeholder}
+					onChange={onChange}
+				/>
+			)}
 
 			{error && <span className={styles.errorMessage}>{error}</span>}
 		</label>

@@ -21,7 +21,15 @@ const Product = ({ product, className }) => {
 				<h2 className={styles.name}>{product.name}</h2>
 				<p className={styles.description}>{product.description}</p>
 			</div>
-			<Button variant="secondary" onClick={handleDelete}>Delete</Button>
+			<div className={styles.buttons}>
+				<Button
+					rootClassName={styles.delete}
+					variant="secondary"
+					onClick={handleDelete}
+				>
+					Delete
+				</Button>
+			</div>
 		</div>
 	);
 };

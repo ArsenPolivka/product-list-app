@@ -5,6 +5,8 @@ import { DM_Sans } from "next/font/google";
 import { Container } from "../components/Container";
 
 import styles from '../styles/HomePage.module.css';
+import {Button} from "../components/Button";
+import {Header} from "../components/Header";
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -14,12 +16,7 @@ const dmSans = DM_Sans({
 const HomePage = () => {
   return (
     <Container rootClassName={dmSans.className}>
-      <div className={styles['heading-wrapper']}>
-        <h1>Product list</h1>
-        <p>You can add you own products right here:</p>
-      </div>
-
-      <AddProductModal />
+      <Header />
       <ProductsList />
     </Container>
   );
