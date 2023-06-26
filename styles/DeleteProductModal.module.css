@@ -1,0 +1,30 @@
+.modal {
+    padding: 60px;
+    background-color: white;
+    border-radius: 6px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalWrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.text {
+    margin-bottom: 16px;
+}

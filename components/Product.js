@@ -1,19 +1,22 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteProduct } from '../api/products';
-
-import styles from '../styles/Product.module.css';
-import {Button} from "./Button";
+import React, { useState } from 'react';
 import classNames from "classnames";
 
-const Product = ({ product, className }) => {
-	const dispatch = useDispatch();
+import { DeleteProductModal } from "./DeleteProductModal";
+import { Button } from "./Button";
+
+import styles from '../styles/Product.module.css';
+
+export const Product = ({ product, className }) => {
+	const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);
+	const [isEditModalOpened, setIsEditModalOpened] = useState(false);
 
 	const handleDelete = () => {
-		deleteProduct(product.id).then(response => {
-			console.log(response);
-		});
+		setIsDeleteModalOpened(!isDeleteModalOpened);
 	};
+
+	const handleEdit = () => {
+		setIsEditModalOpened(!isEditModalOpened);
+	}
 
 	return (
 		<div className={classNames(styles.wrapper, className)}>
@@ -25,13 +28,20 @@ const Product = ({ product, className }) => {
 				<Button
 					rootClassName={styles.delete}
 					variant="secondary"
+					onClick={handleEdit}
+				>
+					Edit
+				</Button>
+
+				<Button
+					rootClassName={styles.delete}
+					variant="secondary"
 					onClick={handleDelete}
 				>
 					Delete
 				</Button>
 			</div>
+			{ isDeleteModalOpened && <DeleteProductModal product={product} setIsModalOpened={setIsDeleteModalOpened}/> }
 		</div>
 	);
 };
-
-export default Product;
