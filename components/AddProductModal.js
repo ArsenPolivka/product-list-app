@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import classNames from "classnames";
 
 import { addProduct } from '../api/products';
@@ -7,19 +7,27 @@ import { Button } from "./Button";
 import { Image } from "./Image";
 import { ExitButton } from "./ExitButton";
 
+import { ProductContext } from "../context/product/context";
+
 import styles from '../styles/AddProductModal.module.css'
 
-export const AddProductModal = ({ className, isModalOpened, setIsModalOpened }) => {
+
+export const AddProductModal = ({ className, setIsModalOpened }) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [count, setCount] = useState('');
 	const [size, setSize] = useState('');
 	const [weight, setWeight] = useState('');
 
-	const handleSubmit = () => {
-		addProduct({ name, count, size, weight, description }).then(response => {
-			console.log(response);
-		});
+	const { addOneProduct } = useContext(ProductContext);
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+
+		const newProduct = { name, count, size, weight, description };
+
+		addProduct(newProduct);
+		addOneProduct(newProduct);
 
 		setIsModalOpened(false);
 

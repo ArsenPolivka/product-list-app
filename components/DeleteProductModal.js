@@ -1,26 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+import classNames from "classnames";
 
-import { deleteProduct } from '../api/products';
 import { Button } from "./Button";
 
 import styles from '../styles/DeleteProductModal.module.css';
 
-export const DeleteProductModal = ({ product, setIsModalOpened }) => {
-	const closeModal = () => {
-		setIsModalOpened(false);
-	}
-
-	const handleDelete = async () => {
-		await deleteProduct(product.id);
-		closeModal();
-	};
-
-	useEffect(() => {
-		handleDelete();
-	}, [])
-
+export const DeleteProductModal = ({ handleDeleteConfirmation, handleCancel }) => {
 	return (
-		<div className={styles.modalWrapper}>
+		<div className={classNames(styles.modalWrapper)}>
 			<div className={styles.modal}>
 				<p className={styles.text}>
 					Are you sure you want to delete this product?
@@ -29,7 +16,7 @@ export const DeleteProductModal = ({ product, setIsModalOpened }) => {
 				<div className={styles.buttons}>
 					<Button
 						variant="secondary"
-						onClick={handleDelete}
+						onClick={handleDeleteConfirmation}
 						wide
 					>
 						Yes
@@ -37,7 +24,7 @@ export const DeleteProductModal = ({ product, setIsModalOpened }) => {
 
 					<Button
 						variant="secondary"
-						onClick={closeModal}
+						onClick={handleCancel}
 						wide
 					>
 						No

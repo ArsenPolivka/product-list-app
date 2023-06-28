@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useMemo, useState} from 'react';
 
 import { Product } from './Product';
-import { getAllProducts } from "../api/products";
+import { ProductContext } from "../context/product/context";
 
 import styles from '../styles/ProductList.module.css';
+import {deleteProduct} from "../api/products";
 
-const ProductsList = () => {
-	const [products, setProducts] = useState([]);
+export const ProductsList = () => {
+	const { productList } = useContext(ProductContext);
 
-	useEffect(() => {
-		getAllProducts().then(response => {
-			setProducts(response);
-		})
-	}, []);
-
-	if (!products.length) {
+	if (!productList?.length) {
 		return <p className={styles.noProducts}>There are no products in your list...</p>;
 	}
 
 	return (
 		<div>
-			{products.map(product => (
+			{productList.map((product, index) => (
 				<Product
 					className={styles.product}
-					key={product.id}
+					key={index}
 					product={product}
 				/>
 			))}
 		</div>
 	);
 };
-
-export default ProductsList;

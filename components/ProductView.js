@@ -1,9 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, {useContext, useEffect, useState} from 'react';
 import Comment from './Comment';
+import {ProductContext} from "../context/product/context";
 
-const ProductView = ({ productId }) => {
-	const product = useSelector(state => state.products.find(product => product.id === productId));
+export const ProductView = ({ productId }) => {
+	const [product, setProduct] = useState(null);
+	const { productList } = useContext(ProductContext);
+
+	useEffect(() => {
+		async function getProduct() {
+			productList.map((product) => {
+				productId = product.id && setProduct(product);
+			});
+		}
+
+		getProduct();
+	}, [])
 
 	return (
 		<div>
@@ -15,5 +26,3 @@ const ProductView = ({ productId }) => {
 		</div>
 	);
 };
-
-export default ProductView;

@@ -1,9 +1,22 @@
 export async function getAllProducts() {
-	const response = await fetch(`http://localhost:5000/products`);
+	const response = await fetch(`http://localhost:5000/products`, {
+		method: "GET",
+		headers: {
+			'Content-Type': 'application/json'
+		},
+	});
 
 	const products = await response.json();
 
 	return products;
+}
+
+export async function getCurrentProduct(id) {
+	const response = await fetch(`http://localhost:5000/products/${id}`);
+
+	const product = await response.json();
+
+	return product;
 }
 
 export async function addProduct(body) {
@@ -15,7 +28,7 @@ export async function addProduct(body) {
 		body: JSON.stringify(body),
 	});
 
-	const data = await response.json();
+	const data = body;
 
 	return data;
 }
@@ -28,19 +41,13 @@ export async function editProduct(body, id) {
 		},
 		body: JSON.stringify(body),
 	});
-
-	const data = await response.json();
-
-	return data;
 }
 
 export async function deleteProduct(id) {
 	const response = await fetch(`http://localhost:5000/product/delete/${id}`, {
-		method: "DELETE"
+		method: "DELETE",
+		headers: {
+			'Content-Type': 'application/json'
+		},
 	});
-
-	const data = await response.json();
-
-	return data;
 }
-

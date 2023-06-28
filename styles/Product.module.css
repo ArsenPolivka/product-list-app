@@ -7,6 +7,16 @@
     color: #000000;
     padding: 8px 16px;
     border: solid 1px #000000;
+    font-weight: initial;
+    width: 100%;
+    cursor: pointer;
+    transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.wrapper:hover {
+    background-color: black;
+    color: white;
+
 }
 
 .product-info {

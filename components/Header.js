@@ -9,8 +9,7 @@ export const Header = () => {
 	const [isModalOpened, setIsModalOpened] = useState(false);
 
 	const openModal = () => {
-		setIsModalOpened(true);
-		console.log(isModalOpened)
+		setIsModalOpened(!isModalOpened);
 	}
 
 	return (
@@ -32,7 +31,7 @@ export const Header = () => {
 				</div>
 			</header>
 
-			{ isModalOpened && <AddProductModal isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened}/> }
+			{ isModalOpened && <AddProductModal setIsModalOpened={setIsModalOpened}/> }
 		</>
 	)
 }

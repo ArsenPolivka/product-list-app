@@ -1,13 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from '../store/store';
+
+import { ProductProvider } from "../context/product/ProductProvider";
+
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => {
 	return (
-		<Provider store={store}>
+		<ProductProvider>
 			<Component {...pageProps} />
-		</Provider>
+		</ProductProvider>
 	);
 };
 
