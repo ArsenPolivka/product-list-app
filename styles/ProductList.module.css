@@ -1,5 +1,11 @@
+.productList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .product {
-    margin-bottom: 8px;
+    flex-basis: 100%;
 }
 
 .noProducts {

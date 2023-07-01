@@ -9,10 +9,14 @@ import { deleteProduct } from "../api/products";
 import { ProductContext } from "../context/product/context";
 
 import styles from '../styles/Product.module.css';
+import {ProductView} from "./ProductView";
+import {Img} from "./Image";
 
 export const Product = ({ product, className }) => {
 	const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);
 	const [isEditModalOpened, setIsEditModalOpened] = useState(false);
+	const [isProductModalOpened, setIsProductModalOpened] = useState(false);
+
 	const { deleteProductFromList } = useContext(ProductContext);
 
 	const handleDelete = () => {
@@ -29,7 +33,7 @@ export const Product = ({ product, className }) => {
 	}
 
 	const openProduct = () => {
-
+		setIsProductModalOpened(!isProductModalOpened);
 	}
 
 	const handleDeleteConfirmation = async () => {
@@ -43,15 +47,17 @@ export const Product = ({ product, className }) => {
 	}
 
 	return (
-		<button
-			onClick={openProduct}
-			className={classNames(styles.wrapper, className)}
-		>
-			<div className={styles['product-info']}>
-				<h2 className={styles.name}>{product.name}</h2>
-				<p className={styles.description}>{product.description}</p>
+		<div className={styles.productCard}>
+			<div
+				onClick={openProduct}
+				className={classNames(styles.wrapper, className)}
+			>
+				<div className={styles['product-info']}>
+					<Img component={ Product }/>
+					<h2 className={styles.name}>{product.name}</h2>
+					<p className={styles.description}>{product.description}</p>
+				</div>
 			</div>
-
 			<div className={styles.buttons}>
 				<Button
 					rootClassName={styles.edit}
@@ -69,7 +75,6 @@ export const Product = ({ product, className }) => {
 					Delete
 				</Button>
 			</div>
-
 			{ isEditModalOpened && (
 				<EditProductModal
 					product={product}
@@ -84,6 +89,10 @@ export const Product = ({ product, className }) => {
 					handleCancel={handleCancelDelete}
 				/>
 			)}
-		</button>
+
+			{ isProductModalOpened && (
+				<ProductView setIsProductModalOpened={setIsProductModalOpened}/>
+			)}
+		</div>
 	);
 };

@@ -4,13 +4,12 @@ import classNames from "classnames";
 import { addProduct } from '../api/products';
 import { Input } from "./Input";
 import { Button } from "./Button";
-import { Image } from "./Image";
+import { Img } from "./Image";
 import { ExitButton } from "./ExitButton";
 
 import { ProductContext } from "../context/product/context";
 
 import styles from '../styles/AddProductModal.module.css'
-
 
 export const AddProductModal = ({ className, setIsModalOpened }) => {
 	const [name, setName] = useState('');
@@ -19,15 +18,14 @@ export const AddProductModal = ({ className, setIsModalOpened }) => {
 	const [size, setSize] = useState('');
 	const [weight, setWeight] = useState('');
 
-	const { addOneProduct } = useContext(ProductContext);
+	const { addOneProduct, isAddingProduct } = useContext(ProductContext);
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		const newProduct = { name, count, size, weight, description };
 
-		addProduct(newProduct);
-		addOneProduct(newProduct);
+		await addOneProduct(newProduct);
 
 		setIsModalOpened(false);
 
@@ -46,7 +44,7 @@ export const AddProductModal = ({ className, setIsModalOpened }) => {
 			>
 				<h2 className={styles.heading}>Add product</h2>
 
-				<Image />
+				<Img />
 
 				<div className={styles['input-wrapper']}>
 					<Input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" required />
@@ -63,6 +61,7 @@ export const AddProductModal = ({ className, setIsModalOpened }) => {
 				>
 					Add
 				</Button>
+				{ isAddingProduct && <div>Adding Product...</div>}
 			</form>
 
 			<ExitButton setIsModalOpened={setIsModalOpened}/>

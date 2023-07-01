@@ -14,7 +14,7 @@ export const ProductsList = () => {
 	}
 
 	return (
-		<div>
+		<div className={styles.productList}>
 			{productList.map((product, index) => (
 				<Product
 					className={styles.product}

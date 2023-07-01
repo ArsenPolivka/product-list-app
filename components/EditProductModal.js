@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Input } from "./Input";
 import { Button } from "./Button";
-import { Image } from "./Image";
+import { Img } from "./Image";
 import { ExitButton } from "./ExitButton";
 import { editProduct } from "../api/products";
 
@@ -37,7 +37,7 @@ export const EditProductModal = ({ product, setIsEditModalOpened }) => {
 					Edit product
 				</h2>
 
-				<Image />
+				<Img />
 
 				<div className={styles['input-wrapper']}>
 					<Input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Name" required />
